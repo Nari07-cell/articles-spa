@@ -1,0 +1,68 @@
+
+/* Scrolling fix: make the app full-height and let the sidebar/main scroll independently */
+html, body, #root { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+.app { height: 100%; display: flex; flex-direction: column; }
+
+.topbar { height: 64px; box-sizing: border-box; }
+
+/* Layout uses full available height minus topbar */
+.layout { height: calc(100vh - 64px); display: grid; grid-template-columns: 320px 1fr; gap: 0; align-items: start; }
+
+.sidebar-panel { height: 100%; overflow: auto; -webkit-overflow-scrolling: touch; }
+.main { height: 100%; overflow: auto; -webkit-overflow-scrolling: touch; padding: 28px 40px; box-sizing: border-box; }
+
+
+:root{
+  --bg:#f8fafc;
+  --panel:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#2563eb;
+}
+/* Dark mode variables */
+.app { background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; font-family: Georgia, 'Times New Roman', serif; }
+.app.dark { --bg:#0b1220; --panel:#071126; --text:#e6eef8; --muted:#9fb0c8; --accent:#60a5fa; }
+
+/* Topbar */
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:12px 24px; border-bottom:1px solid rgba(0,0,0,0.06); background:var(--panel); position:sticky; top:0; z-index:40; }
+.brand { font-weight:700; font-size:20px; letter-spacing:0.2px; }
+.controls { display:flex; gap:12px; align-items:center; }
+
+/* Layout using CSS grid for stable sidebar + content */
+
+
+/* Sidebar */
+
+.sidebar-search { display:flex; gap:8px; margin-bottom:8px; }
+.sidebar-search input { flex:1; padding:8px 10px; border-radius:6px; border:1px solid #e6eef8; background: #fbfdff; }
+.sidebar-list { list-style:none; padding:0; margin:0; }
+.sidebar-item { padding:10px 8px; border-radius:6px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+.sidebar-item:hover { background: rgba(37,99,235,0.06); }
+
+/* Main content */
+
+.article-card { background:var(--panel); padding:28px; border-radius:8px; box-shadow:0 1px 6px rgba(2,6,23,0.06); color:var(--text); max-width:980px; margin:0 auto; line-height:1.5; }
+.article-card h1 { font-family: Georgia, 'Times New Roman', serif; font-size:28px; margin:0 0 6px 0; }
+.meta { color:var(--muted); font-size:13px; margin-bottom:12px; }
+.article-card h3 { margin-top:18px; font-size:18px; }
+.body { font-size:15px; color:var(--text); }
+
+.diagram { margin-top:18px; padding:14px; border:1px dashed rgba(0,0,0,0.12); color:var(--muted); border-radius:6px; background:transparent; }
+
+.placeholder { color:var(--muted); background:transparent; padding:20px; max-width:900px; margin:40px auto; }
+
+.switch input { margin-right:8px; }
+
+/* Responsive */
+@media (max-width: 980px) {
+  
+  
+  .article-card { padding:18px; max-width:760px; }
+}
+
+@media (max-width: 700px) {
+  
+  
+  
+  .article-card { margin-top:8px; }
+}
